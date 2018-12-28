@@ -1,0 +1,142 @@
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="/obra/lista">Obras</a></li>
+	<li class="breadcrumb-item active"><%=obra.provincia%> - <%=obra.localidad%></li>
+</ol>
+<h1 class="display-4"><%=obra.provincia%> - <%=obra.localidad%></h1>
+
+<div class="row align-items-center justify-content-between">
+	<div class="col float-left">
+		<h2 class="display-4 d-inline">Detalles</h2>
+	</div>
+	<div class="col float-right">
+		<!--button class="btn btn-primary">Nuevo Mantenimiento</button-->
+		<form method="post" action="/obra/delete/<%= obra.id %>" class="">
+			<input type="submit" value="Eliminar Obra" class="btn btn-danger float-right">
+		</form>
+	</div>
+	<table class="table table-striped" style="vertical-align: middle,">
+		<thead>
+			<tr>
+				<!--th>ID</th-->
+				<th scope="col" style="text-align: center;">Codigo</th>
+				<th scope="col" style="text-align: center;">Nombre</th>
+				<th scope="col" style="text-align: center;">Provincia</th>
+				<th scope="col" style="text-align: center;">Localidad</th>
+				<th scope="col" style="text-align: center;">Fecha Inicio</th>
+				<th scope="col" style="text-align: center;">Fecha Fin</th>
+				<th scope="col" style="text-align: center;">Cantidad de Maquinas</th>
+			</tr>
+		</thead>
+		<tbody>
+			<td style="vertical-align: middle; text-align: center;"><%= obra.codigo %></td>
+			<td style="vertical-align: middle; text-align: center;"><%= obra.nombre %></td>
+			<td style="vertical-align: middle; text-align: center;"><%= obra.provincia %></td>
+			<td style="vertical-align: middle; text-align: center;"><%= obra.localidad %></td>
+			<td style="vertical-align: middle; text-align: center;"><%= obra.fechaInicio %></td>
+			<td style="vertical-align: middle; text-align: center;"><%= obra.fechaFin %></td>
+			<td style="vertical-align: middle; text-align: center;"><%= cantidadMaquinas %></td>
+		</tbody>
+	</table>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col" style="text-align: center;">Observaciones</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="text-align: center;"><%= obra.observaciones %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+</div>
+
+<div class="row align-items-center justify-content-between">
+	<div class="col float-left">
+		<h4 class="display-4 d-inline">Administracion de Maquinas</h4>
+	</div>
+	<div class="container-fluid">
+	  <div class="row">
+	    <div class="col" style="text-align: center;">
+	    	<label style="text-align: center;"><h4>Todas las maquinas</h4></label>
+	      <div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<th scope="col" style="text-align: center;">Codigo</th>
+					<th scope="col" style="text-align: center;">Designacion</th>
+					<th scope="col" style="text-align: center;">Marca</th>
+					<th scope="col" style="text-align: center;">Modelo</th>
+					<th scope="col" style="text-align: center;">Acción</th>
+
+				</thead>
+				<tbody>
+					<% todasMaquinas.forEach(function(maquina){ %>
+						<tr>
+							<td style="text-align: center;"><a href="/maquina/ver/<%=maquina.id%>"><%= maquina.codigo %></a></td>
+							<td style="text-align: center;"><%= maquina.tipo %></td>
+							<td style="text-align: center;"><%= maquina.marca %></td>
+							<td style="text-align: center;"><%= maquina.modelo %></td>
+							<td style="text-align: center;">
+								<form method="post" action="/obra/agregar/<%= obra.id%>/<%= maquina.id %>/" class="form-inline">
+									<div class="input-group mb-2 mr-sm-2">
+									    <div class="input-group-prepend">
+									      <button type="submit"class="btn btn-success mb-2">Agregar</button>
+									    </div>
+									  </div>
+									
+								</form>
+							</td>
+						</tr>
+					<%})%>
+				</tbody>
+			</table>
+		</div>
+	    </div>
+	    <div class="col" style="text-align: center;">
+	    	<label style="text-align: center;"><h4>Maquinas en esta obra</h4></label>
+		        <div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<th scope="col" style="text-align: center;">Codigo</th>
+							<th scope="col" style="text-align: center;">Designacion</th>
+							<th scope="col" style="text-align: center;">Marca</th>
+							<th scope="col" style="text-align: center;">Modelo</th>
+							<th scope="col" style="text-align: center;">Acción</th>
+						</thead>
+						<tbody>
+							<% maquinasObra.forEach(function(maquina){ %>
+								<tr>
+									<td style="text-align: center;"><a href="/maquina/ver/<%=maquina.id%>"><%= maquina.codigo %></a></td>
+									<td style="text-align: center;"><%= maquina.tipo %></td>
+									<td style="text-align: center;"><%= maquina.marca %></td>
+									<td style="text-align: center;"><%= maquina.modelo %></td>
+									<td style="text-align: center;">
+										<% if(obra.codigo != "T01"){ %>
+											<form method="post" action="/obra/quitar/<%= obra.id%>/<%= maquina.id %>/" class="form-inline">
+												<div class="input-group mb-2 mr-sm-2">
+												    <div class="input-group-prepend">
+												      <button type="submit"class="btn btn-danger mb-2">Quitar</button>
+												    </div>
+												  </div>
+											</form>
+										<%}%>
+									</td>
+								</tr>
+							<%})%>
+						</tbody>
+					</table>
+				</div>
+	    </div>
+	  </div>
+
+
+
+
+
+	<!--div class="col float-right">
+		<form method="post" action="/obra/add/" class="">
+			<input type="submit" value="Nuevo Mantenimiento" class="btn btn-primary float-right">
+		</form>
+	</div-->
+	
+</div>

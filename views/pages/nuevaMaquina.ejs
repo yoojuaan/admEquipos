@@ -1,0 +1,84 @@
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="/maquina/lista">Maquinas</a></li>
+	<li class="breadcrumb-item active">Nuevo</li>
+</ol>
+<h1 class="display-4">Nueva Maquina</h1>
+<form method="post" action="/maquina/create">
+	<div class="form-group">
+	    <label for="tipo"><h5>Designación</h5></label>
+	    <select class="form-control" name="tipo">
+	      <option>Excavadora</option>
+	      <option>Retro</option>
+	      <option>Camion</option>
+	      <option>Topadora</option>
+	    </select>
+  	</div>
+	<div class="form-group">
+	    <label for="marca"><h5>Marca</h5></label>
+	    <select class="form-control" name="marca">
+	      <option>Komatsu</option>
+	      <option>John Deere</option>
+	      <option>Iveco</option>
+	      <option>Scania</option>
+	    </select>
+  	</div>
+	<div class="form-group">
+	    <label for="modelo"><h5>Modelo</h5></label>
+	    <input type="string" name="modelo" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="origen"><h5>Origen</h5></label>
+  		<input type="string" name="origen" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="codigo"><h5>Codigo</h5></label>
+  		<input type="string" name="codigo" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="nroSerie"><h5>Número de Serie</h5></label>
+  		<input type="string" name="nroSerie" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="fechaFab"><h5>Año de Fabricación</h5></label>
+  		<input type="number" name="fechaFab" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="fechaServicio"><h5>Fecha de entrada en servicio</h5></label>
+  		<input type="string" name="fechaServicio" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="potencia"><h5>Potencia</h5></label>
+      <div class="input-group mb-2">
+      	<input type="number" class="form-control" name="potencia">
+        <div class="input-group-prepend">
+          <select class="input-group-text" name="potenciaUnidad">
+		      <option>HP</option>
+		      <option>CV</option>
+		      <option>KiloWatts</option>
+		    </select>
+        </div>
+      </div>
+    </div>
+
+  	<div class="form-group">
+  		<label for="peso"><h5>Peso</h5></label>
+  		<input type="number" name="peso" class="form-control">
+  	</div>
+  	<div class="form-group">
+  		<label for="precio"><h5>Precio</h5></label>
+  		<input type="number" name="precio" class="form-control">
+  	</div>
+	<div class="form-group">
+		<label for="horasTotal"><h5>Horas/Km Totales</h5></label>
+		<input type="number" name="horasTotal" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="horasParcial"><h5>Horas/Km desde ultimo service</h5></label>
+		<input type="number" name="horasParcial" class="form-control">
+	</div>
+  	<div class="form-group">
+  		<label for="observaciones"><h5>Observaciones</h5></label>
+  		<textarea type="string" name="observaciones" class="form-control"></textarea>
+  	</div>
+	<input type="submit" value="Guardar" class="btn btn-primary">
+</form>

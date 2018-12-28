@@ -1,0 +1,65 @@
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="/maquina/lista">Maquinas</a></li>
+	<li class="breadcrumb-item"><a href="/maquina/ver/<%=maquina.id%>"><%= maquina.marca%> <%= maquina.modelo%></a></li>
+	<li class="breadcrumb-item active">Nuevo Mantenimiento</li>
+</ol>
+<h1 class="display-4">Nuevo Mantenimiento</h1>
+<form method="post" action="/mantenimiento/create/<%=maquina.id%>">
+	<div class="form-group">
+	    <label for="fecha"><h4>Fecha</h4></label>
+	    <input class="form-control" type="date" name="fecha">
+  	</div>
+	<div class="form-group">
+		<label for="horasTotal"><h4>Horas Totales</h4></label>
+		<input class="form-control" type="text" name="horasTotal" readonly="true" value="<%=maquina.horasTotal%>"></input>
+	</div>
+	<div class="form-group">
+		<label for="horasParcial"><h4>Horas desde ultimo service</h4></label>
+		<input class="form-control" type="text" name="horasParcial" readonly="true" value="<%=maquina.horasParcial%>"></input>
+	</div>
+	<div class="form-group">
+		<label for="tipoMantenimiento"><h4>Tipo de Mantenimiento</h4></label>
+		<select class="form-control" name="tipoMantenimiento">
+			<option value="250">250Hs.</option>
+			<option value="500">500Hs.</option>
+			<option value="1000">1000Hs.</option>
+			<option value="2000">2000Hs.</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="filtro"><h4>Filtro</h4></label>
+		<select class="form-control" name="filtro">
+			<option value="null">No se cambia</option>
+			<% piezas.forEach(function(pieza){ %>
+				<% if(pieza.repuesto == 'Filtro'){ %>
+					<% if(pieza.cantidad > 0){ %>
+						<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+					<%}%>
+				<%}%>
+			<%})%>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="aceite"><h4>Aceite</h4></label>
+		<select class="form-control" name="aceite">
+			<option value="null">No se cambia</option>
+			<% piezas.forEach(function(pieza){ %>
+				<% if(pieza.repuesto == 'Aceite'){ %>
+					<% if(pieza.cantidad > 0){ %>
+						<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+					<%}%>
+				<%}%>
+			<%})%>
+		</select>
+	</div>
+	<div class="form-group">
+	    <label for="cantidadAceite"><h6>Cantidad</h6></label>
+	    <input class="form-control" type="number" name="cantidadAceite">
+  	</div>
+	<div class="form-group">
+		<label for="observaciones"><h4>Observaciones</h4></label>
+		<textarea name="observaciones" class="form-control" placeholder="Ingrese aqui cualquier comentario referente al mantenimiento realizado."></textarea>
+	</div>
+	
+	<input type="submit" value="Guardar" class="btn btn-primary">
+</form>

@@ -1,0 +1,35 @@
+<h1 class="display-4">Repuestos</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<!--th>ID</th-->
+			<th>Repuesto</th>
+			<th>Tipo</th>
+			<th>Marca</th>
+			<th>Cantidad</th>
+			<th>Agregar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% piezas.forEach(function(pieza){ %>
+			<tr>
+				<!--td><%= pieza.id %></td-->
+				<td><%= pieza.repuesto %></td>
+				<td><%= pieza.tipo %></td>
+				<td><%= pieza.marca %></td>
+				<td><%= pieza.cantidad %></td>
+				<td>
+					<!--form method="post" action="/pieza/delete/<%= pieza.id %>" class="d-inline">
+						<input type="submit" value="Borrar" class="btn btn-danger">
+					</form-->
+					<form method="post" action="/pieza/agregar/<%= pieza.id %>/" class="form-inline">
+						<div class="form-group">
+							<input type="number" name="cant" class="d-inline">
+						</div>
+						<input type="submit" value="+" class="btn btn-success">
+					</form>
+				</td>
+			</tr>
+	<%})%>
+	</tbody>
+</table>

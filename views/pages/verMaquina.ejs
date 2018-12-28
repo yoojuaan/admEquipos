@@ -1,0 +1,144 @@
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="/maquina/lista">Maquinas</a></li>
+	<li class="breadcrumb-item active"><%=maquina.marca%> <%=maquina.modelo%></li>
+</ol>
+<h1 class="display-4"><%=maquina.marca%> <%=maquina.modelo%>: <%=maquina.tipo%></h1>
+
+<div class="row align-items-center justify-content-between">
+	<div class="col float-left">
+		<h2 class="display-4 d-inline">Detalles</h2>
+	</div>
+	<div class="col float-right">
+		<!--button class="btn btn-primary">Nuevo Mantenimiento</button-->
+		<form method="post" action="/assets/images/pdf.pdf" class="">
+			<input type="submit" value="Hoja de Mantenimiento" class="btn btn-primary float-right">
+		</form>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col" style="text-align: center;">Codigo</th>
+				<th scope="col" style="text-align: center;">Designación</th>
+				<th scope="col" style="text-align: center;">Marca</th>
+				<th scope="col" style="text-align: center;">Modelo</th>
+				<th scope="col" style="text-align: center;">S/N</th>
+				<th scope="col" style="text-align: center;">Origen</th>
+				<th scope="col" style="text-align: center;">Año Fabricación</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="text-align: center;"><%= maquina.codigo %></td>
+					<td style="text-align: center;"><%= maquina.tipo %></td>
+					<td style="text-align: center;"><%= maquina.marca %></td>
+					<td style="text-align: center;"><%= maquina.modelo %></td>
+					<td style="text-align: center;"><%= maquina.nroSerie %></td>
+					<td style="text-align: center;"><%= maquina.origen %></td>
+					<td style="text-align: center;"><%= maquina.fechaFab %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				
+				<th scope="col" style="text-align: center;">Fecha Servicio</th>
+				<th scope="col" style="text-align: center;">Potencia</th>
+				<th scope="col" style="text-align: center;">Peso</th>
+				<th scope="col" style="text-align: center;">Obra Actual</th>
+				<th scope="col" style="text-align: center;">Precio</th>
+				<th scope="col" style="text-align: center;">Horas Totales</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="text-align: center;"><%= maquina.fechaServicio %></td>
+					<td style="text-align: center;"><%= maquina.potencia %></td>
+					<td style="text-align: center;"><%= maquina.peso %>Kg</td>
+					<td style="text-align: center;"><a href="/obra/ver/<%= obra.id%>"><%= obra.nombre %></a></td>
+					<td style="text-align: center;">U$D <%= maquina.precio %></td>
+					<td style="text-align: center;"><%= maquina.horasTotal%></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col" style="text-align: center;">Observaciones</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="text-align: center;"><%= maquina.observaciones %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+</div>
+
+<div class="row align-items-center justify-content-between">
+	<div class="col float-left">
+		<h4 class="display-4 d-inline">Mantenimientos</h4>
+	</div>
+	<div class="col float-right">
+		<!--button class="btn btn-primary">Nuevo Mantenimiento</button-->
+		<form method="post" action="/mantenimiento/add/<%= maquina.id %>/" class="">
+			<input type="submit" value="Nuevo Mantenimiento" class="btn btn-primary float-right">
+		</form>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col" style="width: 11%; text-align: center;">Fecha</th>
+				<th scope="col" style="width: 5%; text-align: center;">Horas Totales</th>
+				<th scope="col" style="width: 5%; text-align: center;">Horas Parciales</th>
+				<th scope="col" style="width: 7%; text-align: center;">Tipo Mantenimiento</th>
+				<th scope="col" style="width: 13%; text-align: center;">Filtro</th>
+				<th scope="col" style="width: 20%; text-align: center;">Aceite</th>
+				<th scope="col" style="width: 39%; text-align: center;">Observaciones</th>
+				<th scope="col" style="width: 39%; text-align: center;">Acciones</th>
+			</thead>
+			<tbody>
+				<% mantenimientos.forEach(function(mantenimiento){ %>
+					<tr style="vertical-align: middle">
+						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.fecha %></td>
+						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.horasTotal %></td>
+						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.horasParcial %></td>
+						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.tipoMantenimiento %></td>
+						<td style="vertical-align: middle; text-align: center;">
+							<% if(mantenimiento.filtro == null){%>
+								No se cambió
+							<%} else {%>
+								<% piezas.forEach(function(pieza){ %>
+									<%if(pieza.id === mantenimiento.filtro){%>
+										<%= pieza.marca%> <%= pieza.tipo%>
+									<%}%>
+								<%})%>
+							<%}%>
+
+						</td>
+						<td style="vertical-align: middle; text-align: center;">
+							<% if(mantenimiento.aceite == null){%>
+								No se cambió
+							<%} else {%>
+								<% piezas.forEach(function(pieza){ %>
+									<%if(pieza.id === mantenimiento.aceite){%>
+										<%= mantenimiento.cantidadAceite %>Lts. <%= pieza.marca%> <%= pieza.tipo%>
+									<%}%>
+								<%})%>
+							<%}%>
+						</td>
+						<td style="vertical-align: middle; text-align: center;">
+							<% if(mantenimiento.observaciones == ""){%>
+								-
+							<%} else {%>
+
+								<%= mantenimiento.observaciones %>
+							<%}%>
+						</td>
+						<td>Ver</td>
+					</tr>
+				<%})%>
+			</tbody>
+		</table>
+	</div>
+</div>

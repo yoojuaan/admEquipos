@@ -1,0 +1,94 @@
+<h1 class="display-4">Maquinas</h1>
+<div class="table-responsive">
+	<table class="table table-striped" style="vertical-align: middle,">
+		<thead>
+			<tr>
+				<!--th>ID</th-->
+				<th scope="col" style="width: 13%; text-align: center;">Codigo</th>
+				<th scope="col" style="width: 13%; text-align: center;">Marca</th>
+				<th scope="col" style="width: 13%; text-align: center;">Horas Par</th>
+				<th scope="col" style="width: 14%; text-align: center;">Modelo</th>
+				<th scope="col" colspan="2" style="width: 35%; text-align: center;">Proximo Mantenimiento</th>
+				<th scope="col" style="width: 15%; text-align: center;">Agregar Horas</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% maquinas.forEach(function(maquina){ %>
+				<tr style="vertical-align: middle">
+					<!--td><%= maquina.id %></td-->
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.codigo %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.marca %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.horasParcial %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.modelo %></td>
+					<td style="width: 5%; vertical-align: middle; text-align: center;">
+						<div>
+							<form method="post" action="/maquina/ver/<%= maquina.id %>/" class="d-inline">
+								<input type="submit" value="Ver" class="btn btn-success">
+							</form>
+						</div>
+					</td>
+					<td style="width: 30%; vertical-align: middle; text-align: center;">
+						<% if(maquina.horasParcial >= 0 && maquina.horasParcial <= 250){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= maquina.horasParcial*100/250 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="250"><%=maquina.horasParcial%> Horas</div>
+							</div>
+
+
+						<%} else if(maquina.horasParcial > 500 && maquina.horasParcial <= 750){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= (maquina.horasParcial - 500)*100/250 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="250"><%= 250 - (maquina.horasParcial - 500)%> Horas</div>
+							</div>
+
+
+						<%} else if(maquina.horasParcial > 1000 && maquina.horasParcial <= 1250){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= (maquina.horasParcial - 1000)*100/250 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="250"><%= 250 - (maquina.horasParcial - 1000)%> Horas</div>
+							</div>
+
+						<%} else if(maquina.horasParcial > 1500 && maquina.horasParcial <= 1750){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= (maquina.horasParcial - 1500)*100/250 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="250"><%= 250 - (maquina.horasParcial - 1500)%> Horas</div>
+							</div>
+
+						<%} else if(maquina.horasParcial > 250 && maquina.horasParcial <= 500){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <%= maquina.horasParcial*100/500 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="500"><%= 500 - maquina.horasParcial%> Horas</div>
+							</div>
+
+						<%} else if(maquina.horasParcial > 1250 && maquina.horasParcial <= 1500){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <%= (maquina.horasParcial - 1250)*100/500 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="500"><%= 500 - (maquina.horasParcial - 1000)%> Horas</div>
+							</div>
+						<%} else if(maquina.horasParcial > 750 && maquina.horasParcial <= 1000){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= maquina.horasParcial*100/1000 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="1000"><%= 1000 - maquina.horasParcial%> Horas</div>
+							</div>
+						<%} else if(maquina.horasParcial > 1750){%>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <%= maquina.horasParcial*100/2000 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="2000"><%=2000 - maquina.horasParcial%> Horas</div>
+							</div>
+						<%}%>
+
+					</td>
+					<td style="vertical-align: middle; text-align: center;">
+						<!--form method="post" action="/maquina/delete/<%= maquina.id %>" class="d-inline">
+							<input type="submit" value="Borrar" class="btn btn-danger">
+						</form-->
+						<form method="post" action="/maquina/agregar/<%= maquina.id %>/" class="form-inline">
+							<!--div class="form-group mx-sm-3 mb-2">
+								<input type="number" name="cant" class="form-control">
+							</div-->
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="number" class="form-control" name="cant">
+							    <div class="input-group-prepend">
+							      <button type="submit"class="btn btn-success mb-2 input-group-text">+</button>
+							    </div>
+							  </div>
+							
+						</form>
+					</td>
+				</tr>
+		<%})%>
+		</tbody>
+	</table>
+</div>

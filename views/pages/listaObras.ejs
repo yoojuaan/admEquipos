@@ -1,0 +1,50 @@
+<h1 class="display-4">Obras</h1>
+<div class="table-responsive">
+	<table class="table table-striped" style="vertical-align: middle,">
+		<thead>
+			<tr>
+				<!--th>ID</th-->
+				<th scope="col" style="text-align: center;">Codigo</th>
+				<th scope="col" style="text-align: center;">Nombre</th>
+				<th scope="col" style="text-align: center;">Provincia</th>
+				<th scope="col" style="text-align: center;">Localidad</th>
+				<th scope="col" style="text-align: center;">Fecha Inicio</th>
+				<th scope="col" style="text-align: center;">Fecha Fin</th>
+				<th scope="col" style="text-align: center;">Cantidad de Maquinas</th>
+				<th scope="col" style="text-align: center;">Observaciones</th>
+				<th scope="col" style="text-align: center;">Administrar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% obras.forEach(function(obra){ %>
+				<tr style="vertical-align: middle">
+					<!--td><%= obra.id %></td-->
+					<td style="vertical-align: middle; text-align: center;"><%= obra.codigo %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.nombre %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.provincia %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.localidad %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.fechaInicio %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.fechaFin %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.cantidadMaquinas %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= obra.observaciones %></td>
+					<td style="vertical-align: middle; text-align: center;">
+						<!--form method="post" action="/obra/delete/<%= obra.id %>" class="d-inline">
+							<input type="submit" value="Borrar" class="btn btn-danger">
+						</form-->
+						<form method="post" action="/obra/ver/<%= obra.id %>/" class="form-inline">
+							<!--div class="form-group mx-sm-3 mb-2">
+								<input type="number" name="cant" class="form-control">
+							</div-->
+							<div class="input-group mb-2 mr-sm-2">
+							    <div class="input-group-prepend">
+							      <button type="submit"class="btn btn-primary mb-2">Detalles</button>
+							    </div>
+							  </div>
+							
+						</form>
+					</td>
+				</tr>
+		<%})%>
+		</tbody>
+	</table>
+</div>
