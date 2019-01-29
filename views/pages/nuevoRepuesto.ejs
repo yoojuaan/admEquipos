@@ -1,24 +1,25 @@
 <ol class="breadcrumb">
-	<li class="breadcrumb-item"><a href="/pieza/listaRepuestos">Repuestos</a></li>
+	<li class="breadcrumb-item"><a href="/pieza/lista">Repuestos</a></li>
 	<li class="breadcrumb-item active">Nuevo</li>
 </ol>
 <h1 class="display-4">Nuevo Repuesto</h1>
 <form method="post" action="/pieza/create">
 	<div class="form-group">
+		<label for="codigo">Codigo</label>
+		<input type="text" name="codigo" class="form-control">
+	</div>
+	<div class="form-group">
 	    <label for="repuesto">Repuesto</label>
-	    <select class="form-control" name="repuesto">
+	    <select class="form-control" name="repuesto" id="repuesto">
 	      <option>Filtro</option>
 	      <option>Aceite</option>
+	      <option>Liquido</option>
 	    </select>
   	</div>
 	<div class="form-group">
 	    <label for="tipo">Tipo</label>
-	    <select class="form-control" name="tipo">
-	      <option>Tipo 1</option>
-	      <option>Tipo 2</option>
-	      <option>Tipo 3</option>
-	      <option>Tipo 4</option>
-	      <option>Tipo 5</option>
+	    <select class="form-control" name="tipo" id="tipoDeRepuesto">
+	      <option>Por favor seleccione una opcion antes</option>
 	    </select>
   	</div>
 	<div class="form-group">

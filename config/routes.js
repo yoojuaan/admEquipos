@@ -38,28 +38,57 @@ module.exports.routes = {
   action: 'delete',
   skipAssets: true
   },
-
-  '/maquina/agregar/:id': {
+  '/maquina/agregar/:idMaquina/:idObra': {
   controller: 'MaquinaController',
   action: 'agregar',
   skipAssets: true
   },
-
   '/maquina/ver/:id': {
   controller: 'MaquinaController',
   action: 'ver',
   skipAssets: true
   },
+  '/maquina/cargarHojaDatos/:id': {
+  controller: 'MaquinaController',
+  action: 'cargarHojaDatos',
+  skipAssets: true
+  },
+  '/maquina/verHojaDatos/:id': {
+  controller: 'MaquinaController',
+  action: 'verHojaDatos',
+  skipAssets: true
+  },
+
 
   '/mantenimiento/add/:id': {
   controller: 'MantenimientoController',
   action: 'add',
   skipAssets: true
   },
-
   '/mantenimiento/create/:id': {
   controller: 'MantenimientoController',
   action: 'create',
+  skipAssets: true
+  },
+  '/mantenimiento/ver/:idMantenimiento/:idMaquina':{
+  controller: 'MantenimientoController',
+  action: 'ver',
+  skipAssets: true
+  },
+
+  '/reparacion/add/:id': {
+  controller: 'ReparacionController',
+  action: 'add',
+  skipAssets: true
+  },
+  '/reparacion/create/:id': {
+  controller: 'ReparacionController',
+  action: 'create',
+  skipAssets: true
+  },
+  '/reparacion/ver/:idReparacion/:idMaquina':{
+  controller: 'ReparacionController',
+  action: 'ver',
   skipAssets: true
   },
 
@@ -82,6 +111,11 @@ module.exports.routes = {
   '/obra/quitar/:idObra/:idMaquina': {
   controller: 'ObraController',
   action: 'quitar',
+  skipAssets: true
+  },
+  '/obra/updateNombre/:id/:name': {
+  controller: 'ObraController',
+  action: 'updateName',
   skipAssets: true
   },
 

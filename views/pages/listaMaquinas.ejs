@@ -1,14 +1,16 @@
-<h1 class="display-4">Maquinas</h1>
+<h1 class="display-4">Equipos</h1>
 <div class="table-responsive">
 	<table class="table table-striped" style="vertical-align: middle,">
 		<thead>
 			<tr>
 				<!--th>ID</th-->
-				<th scope="col" style="width: 13%; text-align: center;">Codigo</th>
-				<th scope="col" style="width: 13%; text-align: center;">Marca</th>
-				<th scope="col" style="width: 13%; text-align: center;">Horas Par</th>
-				<th scope="col" style="width: 14%; text-align: center;">Modelo</th>
-				<th scope="col" colspan="2" style="width: 35%; text-align: center;">Proximo Mantenimiento</th>
+				<th scope="col" style="width: 9%; text-align: center;">Codigo</th>
+				<th scope="col" style="width: 11%; text-align: center;">Marca</th>
+				<th scope="col" style="width: 11%; text-align: center;">Modelo</th>
+				<th scope="col" style="width: 8%; text-align: center;">Indice de Mantenibilidad</th>
+				<th scope="col" style="width: 8%; text-align: center;">Indice de Reparabilidad</th>
+				<th scope="col" style="width: 8%; text-align: center;">Horometro</th>
+				<th scope="col" colspan="2" style="width: 30%; text-align: center;">Proximo Mantenimiento</th>
 				<th scope="col" style="width: 15%; text-align: center;">Agregar Horas</th>
 			</tr>
 		</thead>
@@ -18,8 +20,10 @@
 					<!--td><%= maquina.id %></td-->
 					<td style="vertical-align: middle; text-align: center;"><%= maquina.codigo %></td>
 					<td style="vertical-align: middle; text-align: center;"><%= maquina.marca %></td>
-					<td style="vertical-align: middle; text-align: center;"><%= maquina.horasParcial %></td>
 					<td style="vertical-align: middle; text-align: center;"><%= maquina.modelo %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.indiceRentabilidad %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.indiceReparabilidad %></td>
+					<td style="vertical-align: middle; text-align: center;"><%= maquina.horasTotal %></td>
 					<td style="width: 5%; vertical-align: middle; text-align: center;">
 						<div>
 							<form method="post" action="/maquina/ver/<%= maquina.id %>/" class="d-inline">
@@ -83,7 +87,7 @@
 							    <div class="input-group-prepend">
 							      <button type="submit"class="btn btn-success mb-2 input-group-text">+</button>
 							    </div>
-							  </div>
+							</div>
 							
 						</form>
 					</td>

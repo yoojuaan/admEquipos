@@ -22,3 +22,21 @@
 // @import 'pages/signup.less';
 //
 // etc.
+
+[data-role="dynamic-fields"] > .form-inline [data-role="add"] {
+    display: none;
+}
+
+[data-role="dynamic-fields"] > .form-inline:last-child [data-role="add"] {
+    display: inline-block;
+}
+
+[data-role="dynamic-fields"] > .form-inline:last-child [data-role="remove"] {
+    display: inline-block;
+}
+[data-role="dynamic-fields"] > .form-inline:first-child [data-role="remove"] {
+    display: none;
+}
+[data-role="dynamic-fields"] > .form-inline [data-role="remove"] {
+    display: none;
+}

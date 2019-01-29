@@ -1,21 +1,12 @@
 <ol class="breadcrumb">
 	<li class="breadcrumb-item"><a href="/maquina/lista">Maquinas</a></li>
 	<li class="breadcrumb-item"><a href="/maquina/ver/<%=maquina.id%>"><%= maquina.marca%> <%= maquina.modelo%></a></li>
-	<li class="breadcrumb-item active">Nuevo Mantenimiento</li>
+	<li class="breadcrumb-item active">Hoja de Datos</li>
 </ol>
-<h1 class="display-4">Nuevo Mantenimiento</h1>
+<h1 class="display-4">Hoja de Datos</h1>
 
-<form method="post" action="/mantenimiento/create/<%=maquina.id%>">
-	<div class="form-group">
-	    <label for="fecha"><h4>Fecha</h4></label>
-	    <!--input class="form-control" type="date" name="fecha"-->
-	    <!--input id="datepicker" width="276" /-->
-	    <input id="datepicker" width="276" type="text" name="fecha" />
-	    <!--% block.('footscript', "<script> $('#datepicker').datepicker({ uiLibrary: 'bootstrap4'});</script>") %-->
-	    <!--% sails.helpers.datepickerhelper() %-->
-
-  	</div>
-  	<div class="form-row">
+<form method="post" action="/maquina/cargarHojaDatos/<%=maquina.id%>">
+  	<!--div class="form-row">
   		<div class="col-md-4 mb-3">
   			<label for="horasTotal"><h4>Horas Totales</h4></label>
 			<input class="form-control form-control-sm" type="text" name="horasTotal" readonly="true" value="<%=maquina.horasTotal%>"></input>
@@ -33,7 +24,7 @@
 				<option value="2000">2000Hs.</option>
 			</select>
   		</div>		
-  	</div>
+  	</div-->
 
   	<hr>
 	<div class="form-group">
@@ -44,12 +35,12 @@
 				<label for="filtro"><h5>Filtro de Aceite Motor</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="filtroAceiteMotor">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codFAceiteMotor">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codFAceiteMotor){ %>
-							<% if(pieza.cantidad > 0){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Filtro'){ %>
+							<% if(pieza.tipo == 'Aceite Motor'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
@@ -64,12 +55,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">1:</label>
 					<div class="col-sm-10">
-						<select class="form-control form-control-sm" name="filtroAire1">
-							<option value="null">No se cambia</option>
+						<select class="form-control form-control-sm" name="codFAire1">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFAire1){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Aire'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -81,12 +72,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">2:</label>
 					<div class="col-sm-10">
-						<select class="form-control form-control-sm" name="filtroAire2">
-							<option value="null">No se cambia</option>
+						<select class="form-control form-control-sm" name="codFAire2">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFAire2){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Aire'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -103,12 +94,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">1:</label>
 					<div class="col-sm-10">
-				        <select class="form-control form-control-sm" name="filtroAceiteHidraulico1">
-							<option value="null">No se cambia</option>
+				        <select class="form-control form-control-sm" name="codFAceiteHid1">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFAceiteHid1){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Aceite Hidraulico'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -120,12 +111,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">2:</label>
 					<div class="col-sm-10">
-				        <select class="form-control form-control-sm" name="filtroAceiteHidraulico2">
-							<option value="null">No se cambia</option>
+				        <select class="form-control form-control-sm" name="codFAceiteHid2">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFAceiteHid2){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Aceite Hidraulico'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -143,12 +134,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">1:</label>
 					<div class="col-sm-10">
-						<select class="form-control form-control-sm" name="filtroCombustible1">
-							<option value="null">No se cambia</option>
+						<select class="form-control form-control-sm" name="codFComb1">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFComb1){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Combustible'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -160,12 +151,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">2:</label>
 					<div class="col-sm-10">
-						<select class="form-control form-control-sm" name="filtroCombustible2">
-							<option value="null">No se cambia</option>
+						<select class="form-control form-control-sm" name="codFComb2">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFComb2){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Combustible'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -177,12 +168,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">3:</label>
 					<div class="col-sm-10">
-						<select class="form-control form-control-sm" name="filtroCombustible3">
-							<option value="null">No se cambia</option>
+						<select class="form-control form-control-sm" name="codFComb3">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFComb3){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Combustible'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -194,12 +185,12 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label col-form-label-sm">4:</label>
 					<div class="col-sm-10">
-						<select class="form-control form-control-sm" name="filtroCombustible4">
-							<option value="null">No se cambia</option>
+						<select class="form-control form-control-sm" name="codFComb4">
+							<option value="null">No corresponde</option>
 							<% piezas.forEach(function(pieza){ %>
-								<% if(pieza.codigo == maquina.codFComb4){ %>
-									<% if(pieza.cantidad > 0){ %>
-										<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+								<% if(pieza.repuesto == 'Filtro'){ %>
+									<% if(pieza.tipo == 'Combustible'){ %>
+										<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 									<%}%>
 								<%}%>
 							<%})%>
@@ -219,12 +210,12 @@
 				<label for="aceite"><h5>Aceite de Motor</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="aceiteMotor">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codAceiteMotor">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codAceiteMotor){ %>
-							<% if(pieza.cantidad >= maquina.cantAceiteMotor){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Aceite'){ %>
+							<% if(pieza.tipo == 'Motor'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
@@ -243,19 +234,19 @@
 				<label for="aceite"><h5>Aceite Hidraulico</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="aceiteHidraulico">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codAceiteHid">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codAceiteHid){ %>
-							<% if(pieza.cantidad >= maquina.cantAceiteHid){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Aceite'){ %>
+							<% if(pieza.tipo == 'Hidraulico'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
 				</select>
 			</div>
 			<div class="col-md-1 mb-3">
-	    		<input class="form-control form-control-sm" type="number" name="cantAceiteHidraulico">
+	    		<input class="form-control form-control-sm" type="number" name="cantAceiteHid">
 			</div>
 			<div class="col-md-1 mb-3">
 				<label for="Lts"><h6>L</h6></label>
@@ -267,19 +258,19 @@
 				<label for="aceite"><h5>Aceite de Diferencial</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="aceiteDiferencial">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codAceiteDif">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codAceiteDif){ %>
-							<% if(pieza.cantidad >= maquina.cantAceiteDif){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Aceite'){ %>
+							<% if(pieza.tipo == 'Diferencial'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
 				</select>
 			</div>
 			<div class="col-md-1 mb-3">
-	    		<input class="form-control form-control-sm" type="number" name="cantAceiteDiferencial">
+	    		<input class="form-control form-control-sm" type="number" name="cantAceiteDif">
 			</div>
 			<div class="col-md-1 mb-3">
 				<label for="Lts"><h6>L</h6></label>
@@ -291,19 +282,19 @@
 				<label for="aceite"><h5>Aceite de Transmision</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="aceiteTransmision">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codAceiteTrans">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codAceiteTrans){ %>
-							<% if(pieza.cantidad >= maquina.cantAceiteTrans){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Aceite'){ %>
+							<% if(pieza.tipo == 'Transmision'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
 				</select>
 			</div>
 			<div class="col-md-1 mb-3">
-	    		<input class="form-control form-control-sm" type="number" name="cantAceiteTransmision">
+	    		<input class="form-control form-control-sm" type="number" name="cantAceiteTrans">
 			</div>
 			<div class="col-md-1 mb-3">
 				<label for="Lts"><h6>L</h6></label>
@@ -315,12 +306,12 @@
 				<label for="aceite"><h5>Aceite de Mandos Finales</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="aceiteMandoFinal">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codAceiteMandoFinal">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codAceiteMandoFinal){ %>
-							<% if(pieza.cantidad >= maquina.cantAceiteMandoFinal){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Aceite'){ %>
+							<% if(pieza.tipo == 'Mandos Finales'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
@@ -344,12 +335,12 @@
 				<label for="aceite"><h5>Liquido Refrigerante</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="liqRefrigerante">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codLiqRefrigerante">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codLiqRefrigerante){ %>
-							<% if(pieza.cantidad >= maquina.cantLiqRefrigerante){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Liquido'){ %>
+							<% if(pieza.tipo == 'Refrigerante'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>
@@ -368,12 +359,12 @@
 				<label for="aceite"><h5>Liquido de Freno</h5></label>
 			</div>
 			<div class="col-md-3 mb-3">
-				<select class="form-control form-control-sm" name="liqFreno">
-					<option value="null">No se cambia</option>
+				<select class="form-control form-control-sm" name="codLiqFreno">
+					<option value="null">No corresponde</option>
 					<% piezas.forEach(function(pieza){ %>
-						<% if(pieza.codigo == maquina.codLiqFreno){ %>
-							<% if(pieza.cantidad >= maquina.cantLiqFreno){ %>
-								<option value="<%= pieza.id %>"><%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
+						<% if(pieza.repuesto == 'Liquido'){ %>
+							<% if(pieza.tipo == 'Freno'){ %>
+								<option value="<%= pieza.codigo %>"><%= pieza.codigo%> <%= pieza.repuesto%> <%= pieza.tipo %> <%= pieza.marca %></option>
 							<%}%>
 						<%}%>
 					<%})%>

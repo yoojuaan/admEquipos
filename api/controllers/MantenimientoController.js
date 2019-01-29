@@ -102,6 +102,25 @@ module.exports = {
 		});
 	},
 
+	ver:function(req,res){
+		Mantenimiento.findOne({id:req.param('idMantenimiento')}).exec(function(err,mantenimiento){
+			if(err){
+				res.send(500, {error: err});
+			}
+			Maquina.findOne({id:req.param('idMaquina')}).exec(function(err,maquina){
+				if(err){
+					res.send(500, {error: err});
+				}
+				Pieza.find({maquina:maquina.id}).exec(function(err,piezas){
+					if(err){
+						res.send(500, {error: err});
+					}
+					res.view('pages/verMantenimiento', {mantenimiento:mantenimiento, maquina:maquina, piezas:piezas});
+				});
+			});
+		});
+	},
+
 	delete:function(req,res){
 		Mantenimiento.destroy({id:req.param('id')}).exec(function(err){
 			if(err){

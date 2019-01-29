@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-	<li class="breadcrumb-item"><a href="/maquina/lista">Maquinas</a></li>
+	<li class="breadcrumb-item"><a href="/maquina/lista">Equipos</a></li>
 	<li class="breadcrumb-item active"><%=maquina.marca%> <%=maquina.modelo%></li>
 </ol>
 <h1 class="display-4"><%=maquina.marca%> <%=maquina.modelo%>: <%=maquina.tipo%></h1>
@@ -9,7 +9,9 @@
 		<h2 class="display-4 d-inline">Detalles</h2>
 	</div>
 	<div class="col float-right">
-		<!--button class="btn btn-primary">Nuevo Mantenimiento</button-->
+		<form method="post" action="/maquina/verHojaDatos/<%=maquina.id%>" class="" style="margin-left: 5px;">
+			<input type="submit" value="Hoja de Datos" class="btn btn-primary float-right" style="margin-left: 5px;">
+		</form>
 		<form method="post" action="/assets/images/pdf.pdf" class="">
 			<input type="submit" value="Hoja de Mantenimiento" class="btn btn-primary float-right">
 		</form>
@@ -88,45 +90,18 @@
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
-				<th scope="col" style="width: 11%; text-align: center;">Fecha</th>
-				<th scope="col" style="width: 5%; text-align: center;">Horas Totales</th>
-				<th scope="col" style="width: 5%; text-align: center;">Horas Parciales</th>
-				<th scope="col" style="width: 7%; text-align: center;">Tipo Mantenimiento</th>
-				<th scope="col" style="width: 13%; text-align: center;">Filtro</th>
-				<th scope="col" style="width: 20%; text-align: center;">Aceite</th>
-				<th scope="col" style="width: 39%; text-align: center;">Observaciones</th>
-				<th scope="col" style="width: 39%; text-align: center;">Acciones</th>
+				<th scope="col" style="width: 20%; text-align: center;">Fecha</th>
+				<th scope="col" style="width: 10%; text-align: center;">Horas Totales</th>
+				<th scope="col" style="width: 10%; text-align: center;">Tipo Mantenimiento</th>
+				<th scope="col" style="width: 45%; text-align: center;">Observaciones</th>
+				<th scope="col" style="width: 5%; text-align: center;">Acciones</th>
 			</thead>
 			<tbody>
 				<% mantenimientos.forEach(function(mantenimiento){ %>
 					<tr style="vertical-align: middle">
 						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.fecha %></td>
 						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.horasTotal %></td>
-						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.horasParcial %></td>
-						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.tipoMantenimiento %></td>
-						<td style="vertical-align: middle; text-align: center;">
-							<% if(mantenimiento.filtro == null){%>
-								No se cambió
-							<%} else {%>
-								<% piezas.forEach(function(pieza){ %>
-									<%if(pieza.id === mantenimiento.filtro){%>
-										<%= pieza.marca%> <%= pieza.tipo%>
-									<%}%>
-								<%})%>
-							<%}%>
-
-						</td>
-						<td style="vertical-align: middle; text-align: center;">
-							<% if(mantenimiento.aceite == null){%>
-								No se cambió
-							<%} else {%>
-								<% piezas.forEach(function(pieza){ %>
-									<%if(pieza.id === mantenimiento.aceite){%>
-										<%= mantenimiento.cantidadAceite %>Lts. <%= pieza.marca%> <%= pieza.tipo%>
-									<%}%>
-								<%})%>
-							<%}%>
-						</td>
+						<td style="vertical-align: middle; text-align: center;"><%= mantenimiento.tipoMantenimiento %>Hs.</td>
 						<td style="vertical-align: middle; text-align: center;">
 							<% if(mantenimiento.observaciones == ""){%>
 								-
@@ -135,7 +110,84 @@
 								<%= mantenimiento.observaciones %>
 							<%}%>
 						</td>
-						<td>Ver</td>
+						<td>
+							<div>
+								<form method="post" action="/mantenimiento/ver/<%= mantenimiento.id %>/<%= maquina.id %>/" class="d-inline">
+									<input type="submit" value="Ver" class="btn btn-success">
+								</form>
+							</div>
+						</td>
+					</tr>
+				<%})%>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row align-items-center justify-content-between">
+	<div class="col float-left">
+		<h4 class="display-4 d-inline">Reparaciones</h4>
+	</div>
+	<div class="col float-right">
+		<form method="post" action="/reparacion/add/<%= maquina.id %>/" class="">
+			<input type="submit" value="Nueva Reparacion" class="btn btn-primary float-right">
+		</form>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col" style="width: 11%; text-align: center;">Fecha</th>
+				<th scope="col" style="width: 5%; text-align: center;">Horas Totales</th>
+				<th scope="col" style="width: 5%; text-align: center;">Horas Parciales</th>
+				<th scope="col" style="width: 13%; text-align: center;">Filtro</th>
+				<th scope="col" style="width: 20%; text-align: center;">Aceite</th>
+				<th scope="col" style="width: 39%; text-align: center;">Observaciones</th>
+				<th scope="col" style="width: 39%; text-align: center;">Acciones</th>
+			</thead>
+			<tbody>
+				<% reparaciones.forEach(function(reparacion){ %>
+					<tr style="vertical-align: middle">
+						<td style="vertical-align: middle; text-align: center;"><%= reparacion.fecha %></td>
+						<td style="vertical-align: middle; text-align: center;"><%= reparacion.horasTotal %></td>
+						<td style="vertical-align: middle; text-align: center;"><%= reparacion.horasParcial %></td>
+						<td style="vertical-align: middle; text-align: center;">
+							<% if(reparacion.filtro == null){%>
+								No se cambió
+							<%} else {%>
+								<% piezas.forEach(function(pieza){ %>
+									<%if(pieza.id === reparacion.filtro){%>
+										<%= pieza.marca%> <%= pieza.tipo%>
+									<%}%>
+								<%})%>
+							<%}%>
+
+						</td>
+						<td style="vertical-align: middle; text-align: center;">
+							<% if(reparacion.aceite == null){%>
+								No se cambió
+							<%} else {%>
+								<% piezas.forEach(function(pieza){ %>
+									<%if(pieza.id === reparacion.aceite){%>
+										<%= reparacion.cantidadAceite %>Lts. <%= pieza.marca%> <%= pieza.tipo%>
+									<%}%>
+								<%})%>
+							<%}%>
+						</td>
+						<td style="vertical-align: middle; text-align: center;">
+							<% if(reparacion.observaciones == ""){%>
+								-
+							<%} else {%>
+
+								<%= reparacion.observaciones %>
+							<%}%>
+						</td>
+						<td>
+							<div>
+								<form method="post" action="/reparacion/ver/<%= reparacion.id %>/<%= maquina.id %>/" class="d-inline">
+									<input type="submit" value="Ver" class="btn btn-success">
+								</form>
+							</div>
+						</td>
 					</tr>
 				<%})%>
 			</tbody>

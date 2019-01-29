@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Inventario de Repuestos</title>
+    <title>Hermant</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -9,7 +9,7 @@
     <%/* If you want to discourage search engines from indexing this site, uncomment the following line: */%>
     <%/* <meta name="robots" content="noindex"> */%>
 
-
+    <!--link rel="icon" href="/assets/favicon.png" type="image/png"-->
     <!--
         Stylesheets and Preprocessors
         ==============================
@@ -31,6 +31,10 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
@@ -38,58 +42,58 @@
 
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
-  <a class="navbar-brand" href="/">Inventario Repuestos</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <a class="navbar-brand" href="/"><b>HERMANT®</b> <i>Control de Mantenimientos</i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Obras
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/obra/lista">Lista de Obras</a>
-          <a class="dropdown-item" href="/obra/add">Nueva Obra</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Maquinas
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/maquina/lista">Lista de Maquinas</a>
-          <a class="dropdown-item" href="/maquina/add">Nueva Maquina</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Repuestos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/pieza/lista">Lista de Repuestos</a>
-          <a class="dropdown-item" href="/pieza/add">Nuevo Repuesto</a>
-        </div>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Obras
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/obra/lista">Lista de Obras</a>
+            <a class="dropdown-item" href="/obra/add">Nueva Obra</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Equipos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/maquina/lista">Lista de Equipos</a>
+            <a class="dropdown-item" href="/maquina/add">Nuevo Equipo</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Repuestos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/pieza/lista">Lista de Repuestos</a>
+            <a class="dropdown-item" href="/pieza/add">Nuevo Repuesto</a>
+          </div>
+        </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Opciones
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Iniciar Sesion</a>
-          <a class="dropdown-item" href="#">Perfil</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Cerrar Sesion</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Opciones
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Iniciar Sesion</a>
+            <a class="dropdown-item" href="#">Perfil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Cerrar Sesion</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div class="container-fluid">
     <%- body %>
   </div>
@@ -105,5 +109,176 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    
+
+
+
+
+    
+    <!-- Script para el campo del formulario dinamico-->
+    <script type="text/javascript">
+      $(function() {
+          // Remove button click
+          $(document).on(
+              'click',
+              '[data-role="dynamic-fields"] > .form-inline [data-role="remove"]',
+              function(e) {
+                var num = $('.clonedInput').length;
+                var newNum = num - 1;
+                e.preventDefault();
+                var container = $(this).closest('[data-role="dynamic-fields"]');
+                var container2 = $(this).closest('[data-name="group-dyn"]');
+                container2.children().filter('.inputCant').attr('value', newNum);
+                $(this).closest('.form-inline').remove();
+              }
+          );
+          // Add button click
+          $(document).on(
+              'click',
+              '[data-role="dynamic-fields"] > .form-inline [data-role="add"]',
+              function(e) {
+                var num = $('.clonedInput').length;
+                var newNum = num + 1;
+                e.preventDefault();
+                var container = $(this).closest('[data-role="dynamic-fields"]');
+                new_field_group = container.children().filter('.form-inline').clone();
+                new_field_group.find('input').each(function(){
+                    $(this).val('');
+                });
+                var container3 = $(this).closest('[data-role="campos-variables"]');
+                container3.children().filter('.clonedInput:first-child').children().attr('name', 'rep'+newNum);
+                var container4 = $(this).closest('[data-role="precio-input"]');
+
+                //container3.children().filter('.precio-input').children().filter('.campo-precio').attr('name', 'precio'+newNum);
+                container4.children().filter('.campo-precio').attr('name', 'precio'+newNum);
+                console.log(container4.children().filter('.campo-precio').attr('name'));
+
+                //console.log(container3.children().filter('.precio-input').children().filter('.campo-precio').attr('name'));
+                //container.children().filter('.form-inline').children().filter('.clonedInput:first-child').children().attr('name', 'rep'+newNum);
+                //container.children().filter('.form-inline').children().filter('.precioInput:first-child').children().attr('name', 'precio'+newNum);
+                //console.log(container.children().filter('.form-inline').children().filter('.precioInput:first-child').children().attr('name'));
+
+                var container2 = $(this).closest('[data-name="group-dyn"]');
+                container2.children().filter('.inputCant').attr('value', newNum);
+                container.append(new_field_group);
+              }
+          );
+      });
+    </script>
+
+
+    <script>
+        $('#datepicker').datepicker({
+          format: 'dd-mm-yyyy',
+          uiLibrary: 'bootstrap4',
+          minDate: function() {
+            var date = new Date();
+            date.setDate(date.getDate()-4);
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+          },
+
+          toDisplay: function (date, format, language) {
+              var d = new Date(date);
+              d.setDate(d.getDate() - 7);
+              return d.toISOString();
+          },
+        });
+    </script>
+    
+    <script>
+      $("#repuesto").change(function() {
+
+        var $dropdown = $(this);
+        var key = $dropdown.val();
+        var $secondChoice = $("#tipoDeRepuesto");
+        $secondChoice.empty();
+                  
+        switch(key) {
+          case 'Filtro':
+            $secondChoice.append("<option>" + "Aceite Motor" + "</option>");
+            $secondChoice.append("<option>" + "Aire" + "</option>");
+            $secondChoice.append("<option>" + "Aceite Hidraulico" + "</option>");
+            $secondChoice.append("<option>" + "Combustible" + "</option>");
+            break;
+          case 'Aceite':
+            $secondChoice.append("<option>" + "Motor" + "</option>");
+            $secondChoice.append("<option>" + "Hidraulico" + "</option>");
+            $secondChoice.append("<option>" + "Diferencial" + "</option>");
+            $secondChoice.append("<option>" + "Transmision" + "</option>");
+            $secondChoice.append("<option>" + "Mandos Finales" + "</option>");
+            break;
+          case 'Liquido':
+            $secondChoice.append("<option>" + "Refrigerante" + "</option>");
+            $secondChoice.append("<option>" + "Freno" + "</option>");
+            break;
+          case 'base':
+            vals = ['Please choose from above'];
+        }
+
+        /*$.ajax({
+            url: '/jsonData/repuestos.json',
+            dataType: 'json',
+            success: function(data) {
+                var key = $dropdown.val();
+                var vals = [];
+                var $secondChoice = $("#tipoDeRepuesto");
+                $secondChoice.empty();
+                console.log("Antes del Switch");
+                          
+                switch(key) {
+                  case 'Filtro':
+                    vals = data.Filtros.split(",");
+                    break;
+                  case 'Aceite':
+                    vals = data.Aceites.split(",");
+                    break;
+                  case 'Liquido':
+                    vals = data.Liquidos.split(",");
+                    break;
+                  case 'base':
+                    vals = ['Please choose from above'];
+                }
+                
+                
+                $.each(vals, function(index, value) {
+                  $secondChoice.append("<option>" + value + "</option>");
+                });
+            }
+        });*/
+
+        /*$.getJSON("../assets/jsonData/repuestos.json", function(data) {
+        
+          var key = $dropdown.val();
+          var vals = [];
+                    
+          switch(key) {
+            case 'Filtros':
+              vals = data.Filtros.split(",");
+              break;
+            case 'Aceites':
+              vals = data.Aceites.split(",");
+              break;
+            case 'Liquidos':
+              vals = data.Liquidos.split(",");
+              break;
+            case 'base':
+              vals = ['Please choose from above'];
+          }
+          
+          var $secondChoice = $("#tipoDeRepuesto");
+          $secondChoice.empty();
+          $.each(vals, function(index, value) {
+            $secondChoice.append("<option>" + value + "</option>");
+          });
+        });*/
+      });
+    </script>
+
+
+
+    
   </body>
 </html>

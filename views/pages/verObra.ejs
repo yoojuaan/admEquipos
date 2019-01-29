@@ -51,6 +51,8 @@
 	</div>	
 </div>
 
+<hr>
+
 <div class="row align-items-center justify-content-between">
 	<div class="col float-left">
 		<h4 class="display-4 d-inline">Administracion de Maquinas</h4>
@@ -71,22 +73,21 @@
 				</thead>
 				<tbody>
 					<% todasMaquinas.forEach(function(maquina){ %>
-						<tr>
-							<td style="text-align: center;"><a href="/maquina/ver/<%=maquina.id%>"><%= maquina.codigo %></a></td>
-							<td style="text-align: center;"><%= maquina.tipo %></td>
-							<td style="text-align: center;"><%= maquina.marca %></td>
-							<td style="text-align: center;"><%= maquina.modelo %></td>
-							<td style="text-align: center;">
-								<form method="post" action="/obra/agregar/<%= obra.id%>/<%= maquina.id %>/" class="form-inline">
-									<div class="input-group mb-2 mr-sm-2">
-									    <div class="input-group-prepend">
-									      <button type="submit"class="btn btn-success mb-2">Agregar</button>
-									    </div>
-									  </div>
-									
-								</form>
-							</td>
-						</tr>
+						<%if(maquina.obra != obra.id){%>
+							<tr>
+								<td style="text-align: center;"><a href="/maquina/ver/<%=maquina.id%>"><%= maquina.codigo %></a></td>
+								<td style="text-align: center;"><%= maquina.tipo %></td>
+								<td style="text-align: center;"><%= maquina.marca %></td>
+								<td style="text-align: center;"><%= maquina.modelo %></td>
+								<td style="text-align: center;">
+									<form method="post" action="/obra/agregar/<%= obra.id%>/<%= maquina.id %>/" class="form-inline">
+										<div class="input-group mb-2 mr-sm-2">
+									    	<button type="submit"class="btn btn-success mb-2">Agregar</button>
+										</div>
+									</form>
+								</td>
+							</tr>
+						<%}%>
 					<%})%>
 				</tbody>
 			</table>
@@ -101,6 +102,7 @@
 							<th scope="col" style="text-align: center;">Designacion</th>
 							<th scope="col" style="text-align: center;">Marca</th>
 							<th scope="col" style="text-align: center;">Modelo</th>
+							<th scope="col" style="text-align: center;">Agregar Horas</th>
 							<th scope="col" style="text-align: center;">Acción</th>
 						</thead>
 						<tbody>
@@ -111,13 +113,21 @@
 									<td style="text-align: center;"><%= maquina.marca %></td>
 									<td style="text-align: center;"><%= maquina.modelo %></td>
 									<td style="text-align: center;">
+										<form method="post" action="/maquina/agregar/<%= maquina.id %>/<%= obra.id %>" class="form-inline">
+											<div class="input-group mb-2 mr-sm-2">
+												<input type="number" class="form-control" name="cant">
+											    <div class="input-group-prepend">
+											      <button type="submit"class="btn btn-success mb-2 input-group-text">+</button>
+											    </div>
+											</div>
+										</form>
+									</td>
+									<td style="text-align: center;">
 										<% if(obra.codigo != "T01"){ %>
 											<form method="post" action="/obra/quitar/<%= obra.id%>/<%= maquina.id %>/" class="form-inline">
 												<div class="input-group mb-2 mr-sm-2">
-												    <div class="input-group-prepend">
-												      <button type="submit"class="btn btn-danger mb-2">Quitar</button>
-												    </div>
-												  </div>
+												      <input type="submit" value="Quitar" class="btn btn-danger float-right">
+												</div>
 											</form>
 										<%}%>
 									</td>

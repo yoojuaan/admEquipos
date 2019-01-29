@@ -8,6 +8,10 @@
 module.exports = {
 
   attributes: {
+    codigo:{
+        type:'string',
+        required: true,
+    },
     repuesto:{
         type:'string',
         required: true

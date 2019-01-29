@@ -130,5 +130,21 @@ module.exports = {
 		});
 	},
 
+	updateName:function(req,res){
+		var obraID = req.param('id');
+		var name = req.param('name');
+		Obra.findOne({id:obraID}).exec(function(err,obra){
+			if(err){
+				res.send(500, {error: err});
+			}
+			Obra.update(obra, {nombre:name}).exec(function(err){
+				if(err){
+					res.send(500, {error: err});
+				}	
+				res.redirect('/obra/ver/' + obraID);
+			});
+		});
+	},
+
 };
 

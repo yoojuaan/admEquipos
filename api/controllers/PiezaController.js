@@ -21,8 +21,9 @@ module.exports = {
 		var repuesto = String(req.body.repuesto);
 		var tipo = String(req.body.tipo);
 		var marca = String(req.body.marca);
+		var codigo = String(req.body.codigo);
 
-		Pieza.create({repuesto:repuesto, tipo:tipo, marca:marca}).exec(function(err){
+		Pieza.create({repuesto:repuesto, tipo:tipo, marca:marca, codigo:codigo}).exec(function(err){
 			if(err){
 				res.send(500, {error: err});
 			}
