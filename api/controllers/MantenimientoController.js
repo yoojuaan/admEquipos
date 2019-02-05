@@ -17,7 +17,7 @@ module.exports = {
 				}
 				res.view('pages/nuevoMantenimiento', {maquina:maquina , piezas:piezas});
 			});
-			
+
 		});
 	},
 	create:function(req,res){
@@ -31,7 +31,7 @@ module.exports = {
 		var observaciones = String(req.body.observaciones);
 
 		var maqID = req.param('id');
-		
+
 		if(req.body.filtro == "null"){
 			filtro = null;
 		}else{
@@ -46,7 +46,7 @@ module.exports = {
 							res.send(500, {error: err});
 						}
 					});
-				}	
+				}
 			});
 		}
 		if(req.body.aceite == "null"){
@@ -67,7 +67,7 @@ module.exports = {
 				}else{
 					cantidadAceite = 0;
 					aceite = null;
-				}	
+				}
 			});
 		}
 		if(tipoMantenimiento == "1000" /*&& y otros flags de control (aceite y filtros)*/){
@@ -131,5 +131,11 @@ module.exports = {
 		});
 		return false;
 	},
+
+  verCalendario:function (req,res) {
+  	  res.view('pages/verCalendario');
+
+  }
+
 };
 

@@ -1,4 +1,11 @@
-<h1 class="display-4">Obras</h1>
+<div class="row justify-content-between">
+	<div class="col-sm">
+		<h1 class="display-4">Obras</h1>
+	</div>
+	<div class="col-sm col-lg-3">
+		<input class="form-control" id="filtrar" type="text" placeholder="Buscar...">
+	</div>
+</div>
 <div class="table-responsive">
 	<table class="table table-striped" style="vertical-align: middle,">
 		<thead>
@@ -15,7 +22,7 @@
 				<th scope="col" style="text-align: center;">Administrar</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tabla">
 			<% obras.forEach(function(obra){ %>
 				<tr style="vertical-align: middle">
 					<!--td><%= obra.id %></td-->

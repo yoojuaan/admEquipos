@@ -64,8 +64,7 @@ module.exports = {
 		});
 		return false;
 	},
-	agregar:function(req,res){
-		var obraId = req.param('idObra');
+	agregarHoras:function(req,res){
 		Maquina.findOne({id:req.param('idMaquina')}).exec(function(err,maquina){
 			if(err){
 				res.send(500, {error: err});
@@ -83,7 +82,7 @@ module.exports = {
 				if(err){
 					res.send(500, {error: err});
 				}
-				res.redirect('/obra/ver/' + obraId);
+				res.redirect('/maquina/lista');
 			});
 		});
 	},

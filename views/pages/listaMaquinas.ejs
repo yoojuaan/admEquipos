@@ -1,6 +1,33 @@
-<h1 class="display-4">Equipos</h1>
+
+<div class="row justify-content-between">
+	<div class="col-sm">
+		<h1 class="display-4">Equipos</h1>
+	</div>
+	<div class="col-sm col-lg-3">
+		<input class="form-control" id="filtrar" type="text" placeholder="Buscar...">
+	</div>
+	<div class="col-sm col-lg-3">
+		<div class="container">
+			<div class="row">
+			    <div class="col-sm bg-success rounded-circle"></div>
+			    <div class="col-5">250Hs</div>
+
+			    <div class="col-sm bg-info rounded-circle"></div>
+			    <div class="col-4">500Hs</div>
+		    </div>
+
+		    <div class="row">
+			    <div class="col-sm bg-warning rounded-circle"></div>
+			    <div class="col-5">1000Hs</div>
+
+			    <div class="col-sm bg-danger rounded-circle"></div>
+			    <div class="col-4">2000Hs</div>
+		    </div>
+		  </div>
+	</div>
+</div>
 <div class="table-responsive">
-	<table class="table table-striped" style="vertical-align: middle,">
+	<table class="table table-striped" style="vertical-align: middle;">
 		<thead>
 			<tr>
 				<!--th>ID</th-->
@@ -10,11 +37,11 @@
 				<th scope="col" style="width: 8%; text-align: center;">Indice de Mantenibilidad</th>
 				<th scope="col" style="width: 8%; text-align: center;">Indice de Reparabilidad</th>
 				<th scope="col" style="width: 8%; text-align: center;">Horometro</th>
-				<th scope="col" colspan="2" style="width: 30%; text-align: center;">Proximo Mantenimiento</th>
+				<th scope="col" colspan="3" style="width: 30%; text-align: center;">Proximo Mantenimiento</th>
 				<th scope="col" style="width: 15%; text-align: center;">Agregar Horas</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tabla">
 			<% maquinas.forEach(function(maquina){ %>
 				<tr style="vertical-align: middle">
 					<!--td><%= maquina.id %></td-->
@@ -64,21 +91,34 @@
 							  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <%= (maquina.horasParcial - 1250)*100/500 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="500"><%= 500 - (maquina.horasParcial - 1000)%> Horas</div>
 							</div>
 						<%} else if(maquina.horasParcial > 750 && maquina.horasParcial <= 1000){%>
-							<div class="progress">
-							  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= maquina.horasParcial*100/1000 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="1000"><%= 1000 - maquina.horasParcial%> Horas</div>
+							<div class="row">
+								<div class="col">
+									<span><%=(1000 - maquina.horasParcial)%>Hs/250Hs</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+								<div class="progress">
+								  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <%= maquina.horasParcial*100/1000 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="1000"><%= maquina.horasParcial*100/1000 %>%</div>
+								</div>
+								</div>
 							</div>
 						<%} else if(maquina.horasParcial > 1750){%>
 							<div class="progress">
 							  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <%= maquina.horasParcial*100/2000 %>%" aria-valuenow="<%= maquina.horasParcial %>" aria-valuemin="0" aria-valuemax="2000"><%=2000 - maquina.horasParcial%> Horas</div>
 							</div>
 						<%}%>
-
+					</td>
+					<td style="vertical-align: middle; text-align: center;">
+						<span data-toggle="tooltip" title="Faltan algunos repuestos para realizar el mantenimiento.">
+						⚠️
+						</span>
 					</td>
 					<td style="vertical-align: middle; text-align: center;">
 						<!--form method="post" action="/maquina/delete/<%= maquina.id %>" class="d-inline">
 							<input type="submit" value="Borrar" class="btn btn-danger">
 						</form-->
-						<form method="post" action="/maquina/agregar/<%= maquina.id %>/" class="form-inline">
+						<form method="post" action="/maquina/agregarHoras/<%= maquina.id %>/" class="form-inline">
 							<!--div class="form-group mx-sm-3 mb-2">
 								<input type="number" name="cant" class="form-control">
 							</div-->
@@ -88,7 +128,7 @@
 							      <button type="submit"class="btn btn-success mb-2 input-group-text">+</button>
 							    </div>
 							</div>
-							
+
 						</form>
 					</td>
 				</tr>

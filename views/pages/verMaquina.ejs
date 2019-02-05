@@ -94,7 +94,7 @@
 				<th scope="col" style="width: 10%; text-align: center;">Horas Totales</th>
 				<th scope="col" style="width: 10%; text-align: center;">Tipo Mantenimiento</th>
 				<th scope="col" style="width: 45%; text-align: center;">Observaciones</th>
-				<th scope="col" style="width: 5%; text-align: center;">Acciones</th>
+				<th scope="col" colspan="2" style="width: 5%; text-align: center;">Acciones</th>
 			</thead>
 			<tbody>
 				<% mantenimientos.forEach(function(mantenimiento){ %>
@@ -116,6 +116,9 @@
 									<input type="submit" value="Ver" class="btn btn-success">
 								</form>
 							</div>
+						</td>
+						<td>
+							<button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal" data-id="<%= mantenimiento.id %>">Borrar</button>
 						</td>
 					</tr>
 				<%})%>
@@ -194,3 +197,30 @@
 		</table>
 	</div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea eliminar la opcion elegida? Esta accion no se puede deshacer.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <!--button type="button" class="btn btn-danger">Eliminar</button-->
+        <form method="post" action="/" class="d-inline">
+			<input type="submit" value="Eliminar" class="btn btn-danger">
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

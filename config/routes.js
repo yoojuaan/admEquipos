@@ -43,6 +43,11 @@ module.exports.routes = {
   action: 'agregar',
   skipAssets: true
   },
+  '/maquina/agregarHoras/:idMaquina': {
+  controller: 'MaquinaController',
+  action: 'agregarHoras',
+  skipAssets: true
+  },
   '/maquina/ver/:id': {
   controller: 'MaquinaController',
   action: 'ver',
@@ -75,6 +80,12 @@ module.exports.routes = {
   action: 'ver',
   skipAssets: true
   },
+  '/mantenimiento/verCalendario':{
+    controller:'MantenimientoController',
+    action: 'verCalendario',
+    skipAssets: true
+  },
+
 
   '/reparacion/add/:id': {
   controller: 'ReparacionController',
