@@ -8,6 +8,10 @@
 module.exports = {
 
   attributes: {
+    id:{
+      type: 'number',
+      autoIncrement:true
+    },
     fecha:{
         type:'string',
         required: true
@@ -119,9 +123,9 @@ module.exports = {
         type:'number',
         defaultsTo: 0,
     },
-    
 
-    
+
+
     observaciones:{
         type:'string',
         defaultsTo:'',
@@ -131,7 +135,6 @@ module.exports = {
     }
 
   },
-  datastore:'mongodb'
+  //datastore:'mongodb'
 
 };
-

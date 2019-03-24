@@ -8,6 +8,10 @@
 module.exports = {
 
   attributes: {
+    id:{
+      type: 'number',
+      autoIncrement:true
+    },
     codigo:{
         type: 'string',
     },
@@ -42,4 +46,3 @@ module.exports = {
   },
 
 };
-

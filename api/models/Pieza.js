@@ -8,6 +8,10 @@
 module.exports = {
 
   attributes: {
+    id:{
+      type: 'number',
+      autoIncrement:true
+    },
     codigo:{
         type:'string',
         required: true,
@@ -34,7 +38,6 @@ module.exports = {
     },
 
   },
-  datastore:'mongodb'
+  //datastore:'mongodb'
 
 };
-

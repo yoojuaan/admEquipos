@@ -8,6 +8,10 @@
 module.exports = {
 
   attributes: {
+    id:{
+      type: 'number',
+      autoIncrement:true
+    },
     codigo:{
         type:'string',
     },
@@ -38,7 +42,7 @@ module.exports = {
         defaultsTo: 0,
     },
     */
-    
+
     nroSerie:{
         type:'string',
     },
@@ -93,7 +97,7 @@ module.exports = {
     codFAceiteHid2:{
         type:'string',
     },
-    
+
     codAceiteMotor:{
         type:'string',
     },
@@ -143,7 +147,7 @@ module.exports = {
     indiceRentabilidad:{    // Costo de mantenimiento en relacion con la produccion -- Gasto en mant + rep / horas totales de la maquina
         type:'number',
     },
-    indiceReparabilidad:{   // time Rep de fallos / time entre fallas 
+    indiceReparabilidad:{   // time Rep de fallos / time entre fallas
         type:'number'
     },
 
@@ -175,7 +179,6 @@ module.exports = {
     },
 
   },
-  datastore:'mongodb'
+  //datastore:'mongodb'
 
 };
-

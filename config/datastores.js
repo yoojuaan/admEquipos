@@ -52,18 +52,18 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
     //adapter: 'sails-mongo',
     //url: 'mongodb://localhost/repuestosdb'
-    
+
 
   },
 
-  mongodb: {
+  /*mongodb: {
   adapter: 'sails-mongo',
   host: 'localhost',
   port: 27017,
   // user: 'username', //optional
   // password: 'password', //optional
   database: 'repuestosdb' //optional
-}
+}*/
 
 
 };
